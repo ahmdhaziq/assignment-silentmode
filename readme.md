@@ -54,6 +54,17 @@ A demonstration of a full-duplex file transfer system using NestJS for the serve
    node client.js
    ```
 
+### Step 3: Trigger API in Terminal
+
+1. Navigate to client directory
+  ```bash
+  cd client
+  ```
+2. Trigger API to simulate the download
+  ```bash
+  curl -X POST http://localhost:3000/download/client-001
+  ```
+
 ---
 
 ## 🛠 How it Works (Workflow)
