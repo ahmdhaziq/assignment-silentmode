@@ -1,6 +1,6 @@
 # File Transfer Demo: WebSocket Chunked Upload
 
-A demonstration of a full-duplex file transfer system using NestJS for the server and a Node.js client. This demo showcases how to handle large file transfers by streaming them in 1MB chunks over WebSockets.
+A demonstration of a full-duplex file transfer system using NestJS for the server and a Node.js client. This demo showcases how to handle large file transfers (~100mb) when server prompted the download from a client that is not directly accessible through the internet client.
 
 ---
 
