@@ -6,16 +6,23 @@ export class DownloadService {
   constructor(private readonly clientService: ClientsService) {}
 
   triggerDownload(clientId: string, fileUrl: string) {
-    const ws = this.clientService.get(clientId);
+    const client = this.clientService.get(clientId);
 
-    if (!ws) {
+    if (!client) {
       console.error(`No WebSocket found for clientId: ${clientId}`);
       return {
         message: `No WebSocket found for clientId: ${clientId}`,
       };
     }
 
-    ws.send(JSON.stringify({ type: 'DOWNLOAD', url: fileUrl }));
+    if (!client.connected) {
+      console.error(`WebSocket for clientId: ${clientId} is not connected`);
+      return {
+        message: `WebSocket for clientId: ${clientId} is not connected`,
+      };
+    }
+
+    client.emit('DOWNLOAD', { url: fileUrl });
     return {
       message: 'Download triggered successfully',
     };

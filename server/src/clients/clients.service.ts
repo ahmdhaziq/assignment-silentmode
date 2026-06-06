@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { Socket } from 'socket.io';
 
 @Injectable()
 export class ClientsService {
-  private clients = new Map<string, WebSocket>();
+  private clients = new Map<string, Socket>();
 
-  registerClient(clientId: string, ws: WebSocket): boolean {
+  registerClient(clientId: string, ws: Socket): boolean {
     this.clients.set(clientId, ws);
     return true;
   }
@@ -24,7 +25,7 @@ export class ClientsService {
     this.clients.delete(clientId);
   }
 
-  removeBySocket(ws: WebSocket): void {
+  removeBySocket(ws: Socket): void {
     for (const [clientId, socket] of this.clients.entries()) {
       if (socket === ws) {
         this.clients.delete(clientId);
