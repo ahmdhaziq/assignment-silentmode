@@ -36,8 +36,9 @@ export class FileTransferService {
       return { status: 'complete', filePath: finalPath };
     }
     return {
-      status: 'chunk_saved',
+      status: 'chunk_received',
       chunkIndex: data.chunkIndex,
+      totalChunks: data.totalChunks,
       fileName: data.fileName,
     };
   }

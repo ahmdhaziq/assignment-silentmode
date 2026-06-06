@@ -79,6 +79,8 @@ export class WebsocketsGateway implements OnGatewayConnection {
         client.emit('UPLOAD_PROGRESS', {
           status: 'chunk_saved',
           chunkIndex: result.chunkIndex,
+          totalChunks: result.totalChunks,
+          fileName: result.fileName,
         });
       } else {
         console.error('Error handling file chunk');
