@@ -35,7 +35,11 @@ export class FileTransferService {
       await this.cleanup(fileDir);
       return { status: 'complete', filePath: finalPath };
     }
-    return { status: 'chunk_received', chunkIndex: data.chunkIndex };
+    return {
+      status: 'chunk_saved',
+      chunkIndex: data.chunkIndex,
+      fileName: data.fileName,
+    };
   }
 
   private async assembleChunks(

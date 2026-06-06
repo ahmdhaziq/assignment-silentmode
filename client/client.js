@@ -65,7 +65,7 @@ async function upload(socket) {
       chunkIndex,
       totalChunks,
       isLastChunk: chunkIndex === totalChunks - 1,
-      chunkData: Array.from(chunkData),
+      chunkData: chunkData,
     });
 
     chunkIndex++;

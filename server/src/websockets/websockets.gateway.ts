@@ -1,4 +1,5 @@
 import {
+  Ack,
   ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
@@ -55,7 +56,7 @@ export class WebsocketsGateway implements OnGatewayConnection {
   async handleFileChunk(
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: any,
-    callback: (response: any) => void,
+    @Ack() callback: (response: any) => void,
   ): Promise<void> {
     console.log('Received file chunk:', payload);
     const data = {
@@ -76,7 +77,7 @@ export class WebsocketsGateway implements OnGatewayConnection {
           `Chunk ${result.chunkIndex} received for file ${data.fileName}`,
         );
         client.emit('UPLOAD_PROGRESS', {
-          status: 'chunk_received',
+          status: 'chunk_saved',
           chunkIndex: result.chunkIndex,
         });
       } else {
